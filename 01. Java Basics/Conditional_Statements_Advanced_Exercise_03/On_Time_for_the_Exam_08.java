@@ -11,30 +11,31 @@ public class On_Time_for_the_Exam_08 {
         int hour_arrive = Integer.parseInt(scanner.nextLine());
         int minute_arrive = Integer.parseInt(scanner.nextLine());
 
-        String condition = "";
-
         int diff = Math.abs((hour_exam - hour_arrive) * 60 + minute_exam - minute_arrive);
 
         int exam_in_min = hour_exam * 60 + minute_exam;
         int arrive_in_min = hour_arrive * 60 + minute_arrive;
 
-
-
-        if (diff < 60) {
-            if (minute_exam >= minute_arrive) {
-                if (minute_exam - minute_arrive > 30) {
-                    condition = "Early";
-                    System.out.println(condition);
+        if (arrive_in_min > exam_in_min) {
+            System.out.println("Late");
+            if (diff < 60) {
+                System.out.printf("%d minutes after the start", diff);
+            } else {
+                System.out.printf("%d:%02d hours after the start", diff / 60, diff % 60);
+            }
+        } else {
+            if (diff <= 30) {
+                System.out.println("On time");
+                if (diff != 0) {
                     System.out.printf("%d minutes before the start", diff);
-                } else {
-                    condition = "On time";
-                    System.out.println(condition);
-                    if (minute_exam != minute_arrive) {
-                        System.out.printf("%d minutes before the start", diff);
-                    }
                 }
             } else {
-
+                System.out.println("Early");
+                if (diff < 60) {
+                    System.out.printf("%d minutes before the start", diff);
+                } else {
+                    System.out.printf("%d:%02d hours before the start", diff / 60, diff % 60);
+                }
             }
         }
     }
