@@ -7,30 +7,23 @@ public class Equal_Arrays_06 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        int[] first = Arrays.stream(scanner.nextLine().split(" "))
+        int[] first_Array = Arrays.stream(scanner.nextLine().split(" "))
                 .mapToInt(Integer::parseInt)
                 .toArray();
 
-        int[] second = Arrays.stream(scanner.nextLine().split(" "))
+        int[] second_Array = Arrays.stream(scanner.nextLine().split(" "))
                 .mapToInt(Integer::parseInt)
                 .toArray();
-        boolean bool = false;
-        int index = -1;
+
         int sum = 0;
 
-        for (int i = 0; i < first.length; i++) {
-            if (first[i] != second[i]) {
-                bool = true;
-                index = i;
-                break;
-            }else {
-                sum += first[i];
+        for (int i = 0; i < first_Array.length; i++) {
+            sum += first_Array[i];
+            if (first_Array[i] != second_Array[i]) {
+                System.out.printf("Arrays are not identical. Found difference at %d index.", i);
+                return;
             }
         }
-        if (bool) {
-            System.out.printf("Arrays are not identical. Found difference at %d index.", index);
-        }else {
-            System.out.println("Arrays are identical. Sum: " + sum);
-        }
+        System.out.printf("Arrays are identical. Sum: %d", sum);
     }
 }
